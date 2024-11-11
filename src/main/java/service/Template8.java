@@ -20,11 +20,21 @@ import java.util.List;
 @Component
 public class Template8 {
 
+    @Autowired
+    ConfigUtility configUtility;
+    private WebDriver driver;
+    private WebDriverWait wait;
+
     private XSSFSheet sheet;
 
     private boolean isDataPresent = false;
 
-    public void createSheet() {
+    int tdscAmount = 0;
+    int tdsjAmount = 0;
+    int tdsjaAmount = 0;
+    int tdsjbAmount = 0;
+
+    public void createSheet(List<WebElement> subTableColumns) {
         try {
             XSSFWorkbook workbook = Template.workbook;
             sheet = workbook.createSheet("PGBP");
@@ -32,12 +42,6 @@ public class Template8 {
             FileInputStream fileIn = new FileInputStream("D:/ABAPP0998H/Scrapped Data/Salary/CustomersDetail3.csv");
             Workbook workbook1 = new XSSFWorkbook(fileIn);
             XSSFSheet sheet_sft = (XSSFSheet) workbook1.getSheetAt(0);
-
-
-            int tdscAmount = 0;
-            int tdsjAmount = 0;
-            int tdsjaAmount = 0;
-            int tdsjbAmount = 0;
 
             for (int i = 0; i <= sheet_sft.getLastRowNum(); i++) {
                 Row row = sheet_sft.getRow(i);
